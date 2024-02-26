@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>ChatBotX-Registration</title>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="{% static 'AuthenticationCss/css/style.css'%}">
+    <style>
+        #bgVideo{
+            position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; 
+        }
+    </style>
+
+  </head>
+  <body class="img js-fullheight">
+    
+    <video autoplay muted loop plays-inline id="bgVideo">
+        <source src="/static/AuthenticationCss/images/video2.webm" type="video/webm">
+       
+      </video>
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section"><img src="{% static 'AuthenticationCss/images/logo.png' %}" alt="logo Image" class="img-fluid" style="height: 100px; width: 100px;" /></h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-6 col-lg-4">
+            <div class="login-wrap p-0">
+              <h3 class="mb-4 text-center">REGISTER</h3>
+              {%block alert%}
+					{% if messages%}
+						 {% for message in messages%}
+						 <div id="mes" >
+							 <h5 id="alert"class="mb-4 text-center text-danger"> {{message}}</h5>
+						 </div>
+						 {%endfor%}
+					{%endif%}
+			  {%endblock alert%}
+              <form action="{% url 'signup' %}" class="signin-form" method ="post">
+               {% csrf_token %}
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Username" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="E-mail" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" placeholder="Password" id="passwd" name="passwd" required><span toggle="#passwd" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" placeholder="Confirm Password" id="cpasswd" name="cpasswd"required><span toggle="#cpasswd" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
+                </div>
+                
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+   <script src="{% static 'AuthenticationCss/js/jquery.min.js'%}"></script>
+   <script src="{% static 'AuthenticationCss/js/popper.js'%}"></script>
+   <script src="{% static 'AuthenticationCss/js/bootstrap.min.js'%}"></script>
+   <script src="{% static 'AuthenticationCss/js/main.js'%}"></script>
+
+  </body>
+</html>

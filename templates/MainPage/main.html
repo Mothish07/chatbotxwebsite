@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+   {% load static %}
+    <meta charset="utf-8">
+    <title>ChatBotx</title>
+    <link rel="stylesheet" href="{% static 'MainPageCss/style.css'%}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="shortcut icon" href="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js">
+    
+    <script src="{% static 'MainPageCss/script.js'%}" defer></script>
+    
+  </head>
+  <body>
+    <div style=" border: 2px solid grey; border-radius: 10px; padding: 5px; width: 9%; height: 10%; background-color: white; font-size: medium;transition: border-width 0.5s ease; text-align: center;transition:1.25s; position: relative;">{{username}}</div>
+    <div id="uid-data" data-uid="{{ uid }}"></div>
+    <!-- Chats container -->
+    <div class="chat-container"></div>
+    <!-- Typing container -->
+    <div class="typing-container">
+      <div class="typing-content">
+        <div class="typing-textarea">
+          <textarea id="chat-input" spellcheck="false" placeholder="Enter Your Queries Here..." required></textarea>
+          <span id="send-btn" class="material-symbols-rounded">send</span>
+        </div>
+        <div class="typing-controls">
+          <span id="rec-btn"><ion-icon name="mic"></ion-icon></span> 
+          <audio id="recClickSound" style="display: none;">
+            <source src="{% static 'MainPageCss/images/recSound.wav'%}" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio>
+          
+          <span><ion-icon name="images"></ion-icon></span>
+      </div>
+    </div>
+    <!--toggle Button-->
+    <div class="menu ">
+      <div class="toggle"><ion-icon name="settings"></ion-icon></div>
+      <li style="--i:6;">
+      <span id="theme-btn-menu" class="material-symbols-rounded" style="background-color: white; border-radius: 40%;font-size: 35px;">light_mode</span>
+      </li>
+      <li style="--i:7;" >
+      <span id="delete-btn-menu" class="material-symbols-rounded " style="background-color: white; border-radius: 40%; font-size: 35px;" >delete</span>
+        </li>
+        <li style="--i:8;" >
+          <a href="{% url 'signout' %}" style="text-decoration: none;"><ion-icon name="log-out" style="background-color: white; border-radius: 40%; font-size: 35px;"></ion-icon></a>
+        </li>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script>
+      let toggle = document.querySelector('.toggle');
+      let menu = document.querySelector('.menu');
+      toggle.onclick = function(){
+      menu.classList.toggle('active')
+}
+    </script>
+  </body>
+</html>
